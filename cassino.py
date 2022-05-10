@@ -97,7 +97,7 @@ while segue:
 
         pH1 = (cH1 / cNumSort) * 100
         pH2 = (cH2 / cNumSort) * 100
-        pH3 = (cH3 / cNumSort) * 10
+        pH3 = (cH3 / cNumSort) * 100
 
         pZeros = (cZeros / cNumSort) * 100
 
