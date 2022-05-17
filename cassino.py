@@ -1,4 +1,6 @@
+import nntplib
 import os
+import time
 vermelho = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
 preto = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 28, 31, 33, 35]
 
@@ -14,27 +16,35 @@ h3 = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
 
 # Variavel contadorass
 cImpar, cPar, cCorV, cCorP, cNumSort, pCentBolasV, pCentBolasP, pCentImp, pCentPar, cSorteada, nSort, cZeros = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-cSt1, cNd2, cRd3, cH1, cH2, cH3, pSt1, pNd2, pRd3, pH1, pH2, pH3, pZeros = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+cSt1, cNd2, cRd3, cH1, cH2, cH3, pSt1, pNd2, pRd3, pH1, pH2, pH3, pZeros, cMenor, cMaior,pMaior, pMenor = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 segue = True
 
 while segue:
     try:
         print( 5 * '*', f'QTD numero analisados {cNumSort}\n' )
         print(f'N° Sorteado : {nSort}, {cSorteada}')
-        print(35 * '_')
-        print('Zeros = {} e {:.0f} %'.format(cZeros, pZeros))
+        
         print(35 * '_')
         print('Impar = {} e {:.0f} %\nPar   = {} e {:.0f} %'.format(cImpar, pCentImp, cPar, pCentPar) )
+        print('Zeros = {} e {:.0f} %'.format(cZeros, pZeros))
+        
         print(35 * '_')
         print('VERMELHO = {} e {:.0f} % \nPRETO    = {} e {:.0f} % '.format(cCorV, pCentBolasV, cCorP, pCentBolasP))
+        
         print(35 * '_')
         print('Grupo ST1 = {}  e  {:.0f} %'.format(cSt1, pSt1))
         print('Grupo ND2 = {}  e  {:.0f} %'.format(cNd2, pNd2))
         print('Grupo RD3 = {}  e  {:.0f} %'.format(cRd3, pRd3))
+        
         print(35 * '_')
         print('Grupo H1 = {}  e  {:.0f} %'.format(cH1, pH1))
         print('Grupo H2 = {}  e  {:.0f} %'.format(cH2, pH2))
         print('Grupo H3 = {}  e  {:.0f} %'.format(cH3, pH3))
+        
+        print(35 * '_')
+        print('N° <= 18 = {} e {:.0f} %'.format(cMenor, pMenor))
+        print('N° >= 19 = {} e {:.0f} %'.format(cMaior, pMaior))
+        
         print(35 * '_')
 
         nSort = int(input('Digite o numero Sorteado: '))
@@ -100,11 +110,26 @@ while segue:
         pH3 = (cH3 / cNumSort) * 100
 
         pZeros = (cZeros / cNumSort) * 100
+        if nSort < 0 :
+            os.system('cls')
+            print(5 * '*', 'Numero invalido', 5 * '*')
+            time.sleep(2)
 
+             
+        elif nSort >18 and nSort < 37:
+            cMaior = cMaior+1
+            pMaior = (cMaior /cNumSort) * 100
+        elif nSort<=18 and nSort < 37 :
+            cMenor = cMenor +1
+            pMenor = (cMenor / cNumSort) * 100
+        
         if nSort > 36:
             cSorteada = 0
+            os.system('cls')
             print(5 * '*', 'ATENÇÃO', 5 * '*')
             print("Numero digitado Maior que permitido")
+            time.sleep(2)
+
 
 
     # Troca de Sorteador
@@ -115,9 +140,13 @@ while segue:
 
     #Probabilidades
     except ZeroDivisionError:
+        os.system('cls')
         print(5 * '*', 'ATENÇÃO', 5 * '*')
         print('O numero inicial digitado é maior que o permitido ')
+        time.sleep(2)
     except ValueError:
+        os.system('cls')
         print('Tipo de Valor invalido')
+        time.sleep(2)
 
     os.system('cls')
