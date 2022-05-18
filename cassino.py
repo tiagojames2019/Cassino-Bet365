@@ -118,11 +118,14 @@ while segue:
              
         elif nSort >18 and nSort < 37:
             cMaior = cMaior+1
-            pMaior = (cMaior /cNumSort) * 100
+            
         elif nSort<=18 and nSort < 37 :
             cMenor = cMenor +1
-            pMenor = (cMenor / cNumSort) * 100
+            
+        pMenor = (cMenor / cNumSort) * 100 
+        pMaior = (cMaior /cNumSort) * 100   
         
+
         if nSort > 36:
             cSorteada = 0
             os.system('cls')
