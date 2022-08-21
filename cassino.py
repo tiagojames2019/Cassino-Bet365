@@ -15,12 +15,16 @@ h2 = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
 h3 = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
 
 # Variavel contadorass
-cImpar, cPar, cCorV, cCorP, cNumSort, pCentBolasV, pCentBolasP, pCentImp, pCentPar, cSorteada, nSort, cZeros = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-cSt1, cNd2, cRd3, cH1, cH2, cH3, pSt1, pNd2, pRd3, pH1, pH2, pH3, pZeros, cMenor, cMaior,pMaior, pMenor = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+cImpar, cPar, cCorV, cCorP, cNumSort, pCentBolasV, pCentBolasP, pCentImp, pCentPar, cSorteada, nSort, cZeros,keyMin, keyMax = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+cSt1, cNd2, cRd3, cH1, cH2, cH3, pSt1, pNd2, pRd3, pH1, pH2, pH3, pZeros, cMenor, cMaior,pMaior, pMenor, maiorX, menorX, qtdMaior, qtdMenor= 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 
 segue = True
+
+#Lista Numuros sorteados
+numerosSorteados = {}
 
 while segue:
     try:
+        # < TELA>
         print( 5 * '*', f'QTD numero analisados {cNumSort}\n' )
         print(f'N° Sorteado : {nSort}, {cSorteada}')
         
@@ -46,9 +50,48 @@ while segue:
         print('N° >= 19 = {} e {:.0f} %'.format(cMaior, pMaior))
         
         print(35 * '_')
-
+        print("Numeros Sorteados")
+        print(numerosSorteados)
+        print(35 * '_')
+        
+        print(f'Numero + Sorteados : {keyMax}\nQuantidade de vezes  :{qtdMaior}')
+        print(35 * '_')
+        
+        print(f'Numero - Sorteado : {keyMin}\nQuantidade de vezes  :{qtdMenor}')
+        print(35 * '_')
+         
         nSort = int(input('Digite o numero Sorteado: '))
+        
+        #Contagem dos numeros que mais Saem
+        
+        if nSort in numerosSorteados:
+            numerosSorteados[nSort] = numerosSorteados[nSort]+1
+        else:
+            numerosSorteados[nSort] = 1
+            
+        #Numero que mais vezes saiu
+        maiorX = max(numerosSorteados.values()) 
 
+        for keyMx, Maxvalue in numerosSorteados.items():
+            if maiorX == Maxvalue:
+                keyMax = keyMx
+                qtdMaior = maiorX
+                
+        print(35 * '_')   
+         
+        #Numero que menos vezes saiu
+        menorX = min(numerosSorteados.values()) 
+
+        for keyMi, minValue in numerosSorteados.items():
+            if menorX == minValue:
+                keyMin = keyMi
+                qtdMenor = menorX
+             
+        print(35 * '_') 
+            
+    
+        
+        # <TELA>
         if nSort in vermelho:
             cCorV = cCorV + 1
             cSorteada = 'Vermelha'
@@ -58,8 +101,6 @@ while segue:
             cSorteada = 'Preto'
         elif nSort == 0 :
             cSorteada = 'Verde'
-
-        # Logicas
 
         # Quantidade de números Pares e Impares sorteados
         if nSort > 0 and nSort % 2 == 0 and nSort < 37 :
@@ -132,7 +173,6 @@ while segue:
             print(5 * '*', 'ATENÇÃO', 5 * '*')
             print("Numero digitado Maior que permitido")
             time.sleep(2)
-
 
 
     # Troca de Sorteador
