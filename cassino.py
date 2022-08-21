@@ -22,6 +22,17 @@ segue = True
 #Lista Numuros sorteados
 numerosSorteados = {}
 
+
+dic ={}
+for i in range(37):
+    dic[i]=0
+
+naoSorteados=[]
+for i in range(37):
+    naoSorteados.append(i)
+
+
+
 while segue:
     try:
         # < TELA>
@@ -50,14 +61,18 @@ while segue:
         print('N° >= 19 = {} e {:.0f} %'.format(cMaior, pMaior))
         
         print(35 * '_')
-        print("Numeros Sorteados")
-        print(numerosSorteados)
-        print(35 * '_')
+        #print("Numeros Sorteados")
+        #print(numerosSorteados)
+        #print(35 * '_')
         
         print(f'Numero + Sorteados : {keyMax}\nQuantidade de vezes  :{qtdMaior}')
         print(35 * '_')
         
         print(f'Numero - Sorteado : {keyMin}\nQuantidade de vezes  :{qtdMenor}')
+        print(35 * '_')
+
+        print(f'Numeros não sorteados')
+        print(naoSorteados)
         print(35 * '_')
          
         nSort = int(input('Digite o numero Sorteado: '))
@@ -68,6 +83,9 @@ while segue:
             numerosSorteados[nSort] = numerosSorteados[nSort]+1
         else:
             numerosSorteados[nSort] = 1
+        
+        if nSort in dic:
+            dic[nSort]=1
             
         #Numero que mais vezes saiu
         maiorX = max(numerosSorteados.values()) 
@@ -175,7 +193,11 @@ while segue:
             time.sleep(2)
 
 
-    # Troca de Sorteador
+    #Troca de Sorteador
+        naoSorteados=[]
+        for chave, valor in dic.items():
+            if valor ==0:
+                naoSorteados.append(chave)
 
     # Quantos acertos
 
