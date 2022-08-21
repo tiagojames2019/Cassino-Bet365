@@ -22,6 +22,9 @@ segue = True
 #Lista Numuros sorteados
 numerosSorteados = {}
 
+nMaisSai=[]
+nMenosSai=[]
+
 
 dic ={}
 for i in range(37):
@@ -65,10 +68,13 @@ while segue:
         #print(numerosSorteados)
         #print(35 * '_')
         
-        print(f'Numero + Sorteados : {keyMax}\nQuantidade de vezes  :{qtdMaior}')
+        print(f'Numero + Sorteados')
+        print(nMaisSai)
+
         print(35 * '_')
         
-        print(f'Numero - Sorteado : {keyMin}\nQuantidade de vezes  :{qtdMenor}')
+        print(f'Numero - Sorteado')
+        print(nMenosSai)
         print(35 * '_')
 
         print(f'Numeros não sorteados')
@@ -88,26 +94,23 @@ while segue:
             dic[nSort]=1
             
         #Numero que mais vezes saiu
+        nMaisSai=[]
+
         maiorX = max(numerosSorteados.values()) 
 
         for keyMx, Maxvalue in numerosSorteados.items():
             if maiorX == Maxvalue:
-                keyMax = keyMx
-                qtdMaior = maiorX
+                nMaisSai.append(f'Nº {keyMx} , Qtd= {Maxvalue}')
                 
-        print(35 * '_')   
          
         #Numero que menos vezes saiu
+        nMenosSai=[]
         menorX = min(numerosSorteados.values()) 
 
         for keyMi, minValue in numerosSorteados.items():
             if menorX == minValue:
-                keyMin = keyMi
-                qtdMenor = menorX
-             
-        print(35 * '_') 
-            
-    
+                nMenosSai.append(f'Nº {keyMi} , Qtd= {minValue}')
+
         
         # <TELA>
         if nSort in vermelho:
